@@ -1,0 +1,6 @@
+{
+  "name": "@kky/ko-date-parse",
+  "version": "0.0.1",
+  "exports": "./index.ts",
+  "license": "MIT"
+}
