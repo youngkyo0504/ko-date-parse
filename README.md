@@ -1,6 +1,9 @@
 # ko-date-parse
 
-ko-date-parse는 한국어로 된 날짜와 시간 표현을 파싱하는 JavaScript 라이브러리입니다. 이 라이브러리를 사용하면 "다음주 화요일", "3일 후", "오후 3시 30분" 등의 다양한 한국어 표현을 JavaScript의 Date 객체로 쉽게 변환할 수 있습니다.
+ko-date-parse는 한국어로 된 날짜와 시간 표현을 파싱하는 JavaScript
+라이브러리입니다. 이 라이브러리를 사용하면 "다음주 화요일", "3일 후", "오후 3시
+30분" 등의 다양한 한국어 표현을 JavaScript의 Date 객체로 쉽게 변환할 수
+있습니다.
 
 ## 특징
 
@@ -13,8 +16,21 @@ ko-date-parse는 한국어로 된 날짜와 시간 표현을 파싱하는 JavaSc
 
 npm을 사용하여 @kky/ko-date-parse를 설치할 수 있습니다.
 
-```
-npm install @kky/ko-date-parse
+```bash
+# npm
+npx jsr add @kky/ko-date-parse
+
+# pnpm
+pnpm dlx jsr add @kky/ko-date-parse
+
+# yarn
+yarn dlx jsr add @kky/ko-date-parse
+
+# deno
+deno add jsr:@kky/ko-date-parse
+
+# bun
+bunx jsr add @kky/ko-date-parse
 ```
 
 ## 사용법
@@ -48,7 +64,7 @@ ko-date-parse는 다음과 같은 표현을 지원합니다:
 주어진 한국어 텍스트를 파싱하여 JavaScript Date 객체를 반환합니다.
 
 - `text` (String): 파싱할 한국어 날짜/시간 표현
-- 반환값: Date 객체 또는 파싱 실패 시 null
+- 반환값: Date 객체 또는 파싱 실패 시 undefined
 
 ## 예제
 
@@ -67,7 +83,8 @@ console.log(date3); // 2023년 12월 25일에 해당하는 Date 객체
 
 ## 기여하기
 
-버그를 발견하셨거나 새로운 기능을 제안하고 싶으시다면, 이슈를 열어주세요. 풀 리퀘스트도 환영합니다.
+버그를 발견하셨거나 새로운 기능을 제안하고 싶으시다면, 이슈를 열어주세요. 풀
+리퀘스트도 환영합니다.
 
 ## 라이선스
 
