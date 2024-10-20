@@ -100,11 +100,13 @@ const patterns: DatePattern[] = [
  * @returns {Date | undefined} 파싱된 Date 객체 또는 파싱 실패 시 undefined
  * 
  * @example
+ * ```ts
  * parseKoreanDate("2023년 12월 25일");    // 2023년 12월 25일의 Date 객체
  * parseKoreanDate("오늘");               // 현재 날짜의 Date 객체
  * parseKoreanDate("3일 후");             // 현재로부터 3일 후의 Date 객체
  * parseKoreanDate("다음 주 월요일");       // 다음 주 월요일의 Date 객체
  * parseKoreanDate("오후 3시 30분");       // 오늘 오후 3시 30분의 Date 객체
+ * ```
  * 
  * @description
  * 이 함수는 다양한 형식의 한국어 날짜 표현을 인식하고 파싱합니다:
