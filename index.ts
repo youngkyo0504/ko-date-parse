@@ -58,12 +58,12 @@ const patterns: DatePattern[] = [
     },
   },
   {
-    regex: /((다)+음|이번|저번|지난)주\s*(월|화|수|목|금|토|일)요일/,
+    regex: /((다)+음|이번|저번|지난)\s주\s*(월|화|수|목|금|토|일)요일/,
     parse: (match) => {
       const date = new Date();
-      const dayNames = ["월", "화", "수", "목", "금", "토", "일"];
-      const currentDay = (date.getDay() + 6) % 7; // 월요일을 0으로 변환
-      const targetDay = dayNames.indexOf(match[3]);
+      const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+      const dayOfWeek = dayNames.indexOf(match[3]);
+
       let weekOffset = 0;
 
       if (match[1] === "이번") {
@@ -72,21 +72,11 @@ const patterns: DatePattern[] = [
         weekOffset = -1;
       } else {
         // '다음', '다다음', '다다다음' 등을 처리
-        weekOffset = match[1].length -1 ;
-        console.log(weekOffset);
+        weekOffset = match[1].length - 1;
       }
 
-      // 현재 요일부터 목표 요일까지의 일수 계산
-      let daysUntilTarget = targetDay - currentDay;
-
-      // 현재 날짜가 목표 요일 이후라면 다음 주로 넘김
-      if (daysUntilTarget <= 0 && weekOffset === 0) {
-        daysUntilTarget += 7;
-      }
-
-      // 주 단위 오프셋과 목표 요일까지의 일수를 더함
-      date.setDate(date.getDate() + weekOffset * 7 + daysUntilTarget);
-      return date;
+      const futureDate = addWeeks(date, weekOffset);
+      return setDay(futureDate, dayOfWeek, { weekStartsOn: 1 });
     },
   },
   {
