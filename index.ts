@@ -1,3 +1,5 @@
+import { addDays, addWeeks, setDay } from "date-fns";
+
 type DatePattern = {
   regex: RegExp;
   parse: (match: RegExpMatchArray) => Date;
@@ -11,14 +13,21 @@ const patterns: DatePattern[] = [
   },
   {
     regex: /오늘/,
+
     parse: () => new Date(),
   },
   {
     regex: /내일/,
     parse: () => {
-      const date = new Date();
-      date.setDate(date.getDate() + 1);
-      return date;
+      return addDays(new Date(), 1);
+    },
+  },
+  {
+    regex: /모레/,
+    parse: () => {
+      return addDays(new Date(), 2);
+    },
+  },
     },
   },
   {
