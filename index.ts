@@ -34,6 +34,10 @@ const patterns: DatePattern[] = [
       return addDays(new Date(), -1);
     },
   },
+  {
+    regex: /그제/,
+    parse: () => {
+      return addDays(new Date(), -2);
     },
   },
   {
