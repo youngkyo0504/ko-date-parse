@@ -92,15 +92,14 @@ const patterns: DatePattern[] = [
   },
 ];
 
-function parseKoreanDate(text: string): Date | null {
+function parseKoreanDate(text: string): Date | undefined {
   for (const pattern of patterns) {
     const match = text.match(pattern.regex);
     if (match) {
       return pattern.parse(match);
     }
   }
-  return null;
+  return undefined;
 }
 
-export { parseKoreanDate  };
-
+export { parseKoreanDate };
