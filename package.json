@@ -8,5 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@std/assert": "npm:@jsr/std__assert@^1.0.6",
+    "mockdate": "^3.0.5"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
 }
