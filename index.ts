@@ -43,10 +43,18 @@ const patterns: DatePattern[] = [
   {
     regex: /(\d+)일\s*(전|후)/,
     parse: (match) => {
-      const date = new Date();
       const days = parseInt(match[1]);
-      date.setDate(date.getDate() + (match[2] === "후" ? days : -days));
-      return date;
+      return addDays(new Date(), match[2] === "후" ? days : -days);
+    },
+  },
+  {
+    regex: /(\d+)주\s*(전|후)/,
+    parse: (match) => {
+      const weekOffset = parseInt(match[1]);
+      return addDays(
+        new Date(),
+        match[2] === "후" ? weekOffset * 7 : -weekOffset * 7,
+      );
     },
   },
   {
