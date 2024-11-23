@@ -58,7 +58,7 @@ const patterns: DatePattern[] = [
     },
   },
   {
-    regex: /((다)+음|이번|저번|지난)\s주\s*(월|화|수|목|금|토|일)요일/,
+    regex: /((다)+음|이번|저번|지난)\s*주\s*(월|화|수|목|금|토|일)요일/,
     parse: (match) => {
       const date = new Date();
       const dayNames = ["일", "월", "화", "수", "목", "금", "토"];

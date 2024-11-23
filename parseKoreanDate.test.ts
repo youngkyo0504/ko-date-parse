@@ -110,3 +110,91 @@ Deno.test("N주 전 파싱", () => {
 Deno.test("잘못된 형식 처리", () => {
   assertEquals(parseKoreanDate("잘못된 날짜"), undefined);
 });
+
+Deno.test("시간 파싱", () => {
+  const today = new Date();
+  today.setHours(15, 30, 0, 0);
+  assertEquals(
+    parseKoreanDate("오후 3시 30분")?.getHours(),
+    today.getHours()
+  );
+  assertEquals(
+    parseKoreanDate("오후 3시 30분")?.getMinutes(),
+    today.getMinutes()
+  );
+
+  today.setHours(9, 0, 0, 0);
+  assertEquals(
+    parseKoreanDate("오전 9시")?.getHours(),
+    today.getHours()
+  );
+  assertEquals(
+    parseKoreanDate("오전 9시")?.getMinutes(),
+    today.getMinutes()
+  );
+
+  // 12시 케이스 테스트
+  today.setHours(0, 0, 0, 0);
+  assertEquals(
+    parseKoreanDate("오전 12시")?.getHours(),
+    today.getHours()
+  );
+
+  today.setHours(12, 0, 0, 0);
+  assertEquals(
+    parseKoreanDate("오후 12시")?.getHours(),
+    today.getHours()
+  );
+});
+
+Deno.test("년월일 파싱", () => {
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("2023년 12월 25일")!),
+    "2023-12-25"
+  );
+});
+
+Deno.test("공백 처리", () => {
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("2023년12월25일")!),
+    "2023-12-25"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("2023년  12월  25일")!),
+    "2023-12-25"
+  );
+});
+
+Deno.test("띄어쓰기 없는 주 단위 표현 파싱", () => {
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("지난주목요일")!),
+    "2024-10-10"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("다음주월요일")!),
+    "2024-10-21"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("이번주금요일")!),
+    "2024-10-18"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("다다음주목요일")!),
+    "2024-10-31"
+  );
+});
+
+Deno.test("다음 주 월요일 변형 파싱", () => {
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("다음주 월요일")!),
+    "2024-10-21"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("다음 주월요일")!),
+    "2024-10-21"
+  );
+  assertEquals(
+    formatYYYYMMDD(parseKoreanDate("다음주월요일")!),
+    "2024-10-21"
+  );
+});
